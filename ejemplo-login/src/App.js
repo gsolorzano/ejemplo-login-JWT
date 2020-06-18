@@ -5,7 +5,7 @@ import {
   Row,
   Col
 } from "reactstrap";
-// import File from './components/file.js'
+import Login from './components/Login'
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <Row>
           <Col></Col>
           <Col xs="6">
-            {/* <File /> */}
+            <Login />
           </Col>
           <Col></Col>
         </Row>

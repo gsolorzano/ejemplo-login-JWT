@@ -1,5 +1,4 @@
-// import File from './files.routes';
-// import FileMultiple from './filesmultiple.routes'
+import Login from './login.routes';
 
 /**
  * 
@@ -8,6 +7,5 @@
  * funcion que agrega todas las rutas a la app de express
  */
 export function addRoutes(app: any) {
-    // app.use('/file',File);
-    // app.use('/filemultiple',FileMultiple);
+    app.use('/login',Login);
 }

@@ -1,0 +1,2 @@
+DROP FUNCTION IF EXISTS createuser;
+DROP FUNCTION IF EXISTS getpassword;
