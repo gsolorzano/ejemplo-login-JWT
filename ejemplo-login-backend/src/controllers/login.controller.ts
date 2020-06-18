@@ -40,10 +40,6 @@ export class LoginController {
                     // Passwords match
                     const token = jwt.sign({email:emailBody},"miclavesupersecreta123*",{expiresIn: '1800s'});
                     response = { token: token }
-                    console.log("Sí")
-                } else {
-                    // Passwords don't match
-                    console.log("No")
                 }
             }
             return res.json(response);
@@ -57,7 +53,6 @@ export class LoginController {
 
     async testToken(req: Request, res: Response): Promise<Response> {
         try {
-            console.log("Entre");
             return res.json({
                 msg: "Token Válido"
             });
