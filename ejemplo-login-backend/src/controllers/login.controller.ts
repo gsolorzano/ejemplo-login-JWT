@@ -38,7 +38,7 @@ export class LoginController {
             if (pass.rows[0] !== undefined) {
                 if (bcrypt.compareSync(req.body.password, pass.rows[0].password)) {
                     // Passwords match
-                    const token = jwt.sign({email:emailBody},"miclavesupersecreta123*",{expiresIn: '1800s'});
+                    const token = jwt.sign({email:emailBody},String(process.env.MASTER_PW),{expiresIn: '1800s'});
                     response = { token: token }
                     console.log("Sí")
                 } else {
