@@ -54,6 +54,7 @@ class Login extends React.Component {
                 "Datos incorrectos",
                 "error"
             );
+            localStorage.clear();
         }
     }
 
@@ -91,7 +92,7 @@ class Login extends React.Component {
         console.log(body)
         const result = await axios.post(`${API}/login/test`, body);
         console.log(result.data.msg);
-        if (result.data.msg !== null && result.data.msg !== undefined) {
+        if (result.data.msg) {
             swal(
                 "¡Token Válido!",
                 "Ya ha iniciado sesión y su token es válido",

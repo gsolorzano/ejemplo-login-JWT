@@ -7,7 +7,7 @@ rutasProtegidas.use((req, res, next) => {
     if (token) {
       jwt.verify(token, String(process.env.MASTER_PW), (err : any, decoded : any) => {      
         if (err) {
-          return res.json({ mensaje: 'Token inválida' });    
+          return res.json({ mensaje: 'Token inválido' });    
         } else {
         //   req.decoded = decoded;    
           next();
