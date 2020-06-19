@@ -7,5 +7,6 @@ const router = Router();
 router.post("/register", Login_Controller.Login);
 router.post("/", Login_Controller.testUser);
 router.post("/test", verify,Login_Controller.testToken);
+router.post("/mail",Login_Controller.testMail);
 
 export default router;

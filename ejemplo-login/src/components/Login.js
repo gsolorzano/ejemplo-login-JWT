@@ -15,12 +15,14 @@ class Login extends React.Component {
             lastname1: "",
             lastname2: "",
             emailRegister: "",
-            passwordRegister: ""
+            passwordRegister: "",
+            emailTest:""
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSubmitRegister = this.handleSubmitRegister.bind(this);
         this.handleSubmitCheck = this.handleSubmitCheck.bind(this);
+        this.handleSubmitEmailTest = this.handleSubmitEmailTest.bind(this);
     }
 
     componentDidMount() {
@@ -108,6 +110,31 @@ class Login extends React.Component {
         }
     }
 
+    async handleSubmitEmailTest(event) {
+        event.preventDefault();
+        const body = {
+            email: this.state.emailTest
+        }
+        console.log(body)
+        await axios.post(`${API}/login/mail`, body);
+        // const result = await axios.post(`${API}/login/test`, body);
+        // console.log(result.data.msg);
+        // if (result.data.msg) {
+        //     swal(
+        //         "¡Token Válido!",
+        //         "Ya ha iniciado sesión y su token es válido",
+        //         "success"
+        //     );
+        // }
+        // else{
+        //     swal(
+        //         "¡Token Inálido!",
+        //         "No ha iniciado sesión o el token que posee ya expiró/inválido",
+        //         "error"
+        //     );
+        // }
+    }
+
     render() {
         return (
             <div>
@@ -143,6 +170,14 @@ class Login extends React.Component {
                 <h1>Prueba Token</h1>
                 <br></br>
                 <Button color="primary" type="button" onClick={(e) => this.handleSubmitCheck(e)}>Probar Token</Button>
+                <br></br>
+                <hr></hr>
+                <h1>Enviar correo de prueba</h1>
+                <br></br>
+                <Label>Correo al que desea enviar la prueba:</Label>
+                <Input name="emailTest" onChange={this.handleChange} type="email"></Input>
+                <br></br>
+                <Button color="primary" type="button" onClick={(e) => this.handleSubmitEmailTest(e)}>Enviar Correo</Button>
                 <br></br>
                 <br></br>
             </div>

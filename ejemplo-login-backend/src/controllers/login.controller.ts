@@ -3,6 +3,7 @@ import { QueryResult } from "pg";
 import { pool } from "../database/connection";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import mail from '../lib/mailSender'
 
 export class LoginController {
 
@@ -38,7 +39,7 @@ export class LoginController {
             if (pass.rows[0] !== undefined) {
                 if (bcrypt.compareSync(req.body.password, pass.rows[0].password)) {
                     // Passwords match
-                    const token = jwt.sign({email:emailBody},String(process.env.MASTER_PW),{expiresIn: '1800s'});
+                    const token = jwt.sign({ email: emailBody }, String(process.env.MASTER_PW), { expiresIn: '1800s' });
                     response = { token: token }
                 }
             }
@@ -56,6 +57,20 @@ export class LoginController {
             return res.json({
                 msg: "Token Válido"
             });
+        } catch (error) {
+            return res.send({
+                msg: "Internal Server Error",
+            });
+        }
+    }
+
+    async testMail(req: Request, res: Response): Promise<Response> {
+        try {
+            const subject = 'Prueba ProRed 👻'
+            const text = "Hello world?"; // plain text body
+            const html = "<b>Hello world?</b>"; // html body
+            mail(req.body.email, subject, text, html);
+            return res.json({});
         } catch (error) {
             return res.send({
                 msg: "Internal Server Error",
